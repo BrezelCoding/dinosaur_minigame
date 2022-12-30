@@ -1,0 +1,14 @@
+body {
+  background-color: rgb(183, 196, 183);
+}
+
+canvas {
+  border: 5px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
