@@ -1,14 +1,44 @@
 body {
-  background-color: rgb(183, 196, 183);
+  background-color: rgb(89, 157, 89);
 }
 
 canvas {
-  border: 5px solid black;
+  border: 5px solid rgb(182, 212, 188);
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   top: 50%;
-  left: 45%;
+  left: 50%;
   transform: translate(-50%, -50%);
+  background: url('background.png') 0 center / 800px repeat-x;
+  animation: moveBg 10s linear infinite;
+}
+
+@keyframes moveBg {
+  0% {
+    background-position: 0 center;
+  }
+  100% {
+    background-position: -800px center;
+  }
+}
+
+.text {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+button {
+  all: unset;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 15px;
+  text-align: center;
 }

@@ -9,7 +9,6 @@ const CANVAS_HEIGHT = 400;
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 
-let timer;
 let cactusArray = [];
 let jumping = false;
 let jumpTimer = 0;
@@ -22,7 +21,7 @@ const cactusImg = new Image();
 cactusImg.src = 'cactus.png';
 
 const dino = {
-  x: 10,
+  x: 50,
   y: 10,
   width: 150,
   height: 150,
@@ -35,8 +34,8 @@ const dino = {
 
 class Cactus {
   constructor() {
-    this.x = 720;
-    this.y = 310;
+    this.x = 800;
+    this.y = 200;
     this.width = 70;
     this.height = 90;
   }
@@ -47,16 +46,15 @@ class Cactus {
   }
 }
 
-/* 1초에 60번 코드 실행하기 */
+/* 랜덤으로 코드 실행하기 */
 function gameExcute() {
   animation = requestAnimationFrame(gameExcute);
 
   ctx.clearRect(0, 0, canvas.width, canvas.height); // 애니메이션 잔상 없애주는 clearRect
 
+  /* 장애물 */
   let randomTime = Math.floor(Math.random() * 2000);
-  console.log(randomTime);
-
-  if (randomTime % 100 === 0 && randomTime < 500) {
+  if (randomTime % 120 === 0 && randomTime < 1000) {
     const cactus = new Cactus();
     cactusArray.push(cactus);
   }
@@ -71,20 +69,20 @@ function gameExcute() {
     cactus.draw();
   });
 
+  /* 점프구현 */
   if (jumping == true) {
-    dino.y -= 3; // 점프구현
+    dino.y -= 3;
     jumpTimer++;
   }
-  if (jumpTimer > 50) {
+  if (jumpTimer > 30) {
     jumping = false;
     jumpTimer = 0;
   }
   if (jumping == false) {
-    if (dino.y < 250) {
+    if (dino.y < 150) {
       dino.y += 3;
     }
   }
-
   dino.draw();
 }
 
@@ -92,11 +90,15 @@ gameExcute();
 
 // 충돌감지 collision detection
 function collision(dino, cactus) {
-  let xGap = cactus.x - (dino.x + dino.width) + 10;
+  let xGap = cactus.x - (dino.x + dino.width) + 20;
   let yGap = cactus.y - (dino.y + dino.height) + 27;
   if (xGap < 0 && yGap < 0) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     cancelAnimationFrame(animation);
+    const gameOver = 'Game Over';
+    ctx.font = 'bold 70px verdana';
+    ctx.fillStyle = 'cornflowerblue';
+    ctx.fillText(gameOver, 180, 200);
   }
 }
 
