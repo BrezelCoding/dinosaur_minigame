@@ -102,9 +102,15 @@ function collision(dino, cactus) {
   }
 }
 
-/* 스페이스바 누르면 점프 */
-document.addEventListener('keydown', function (e) {
-  if (e.code === 'Space') {
+/* 클릭하면 점프 */
+document.addEventListener('click', function (e) {
+  if (e.target) {
     jumping = true;
   }
 });
+
+// document.addEventListener('keydown', function (e) {
+//   if (e.code === 'Space') {
+//     jumping = true;
+//   }
+// });
